@@ -1,0 +1,4 @@
+*.log
+*.ps1
+!server.ps1
+.system_generated/

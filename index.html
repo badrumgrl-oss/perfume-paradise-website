@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERFUME PARADISE INDIA | Premium Arabian Fragrances & Artisanal Attars</title>
+  <meta name="description" content="Discover premium Arabian-inspired fragrances crafted for unforgettable moments. Perfume Paradise India brings accessible luxury with extraordinary longevity.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       ANNOUNCEMENT BAR
+       ========================================================================== -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-actions">
+        <span>🇮🇳 Pan-India Express Delivery</span>
+        <span>•</span>
+        <span>Est. 2013</span>
+      </div>
+
+      <div class="announcement-text">
+        <span class="announcement-pill">VIP Launch</span>
+        <span>COMPLIMENTARY 5ml LUXURY ATTAR ON ALL ORDERS ABOVE ₹1,499 | FREE DELIVERY ACROSS INDIA</span>
+      </div>
+
+      <div class="announcement-actions">
+        <a href="#about">Our Heritage</a>
+        <span>•</span>
+        <a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp Concierge</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo-wrap">
+        <div class="brand-crest">
+          <img src="assets/images/logo.jpg" alt="Perfume Paradise India Crest Logo">
+        </div>
+        <div class="brand-text-block">
+          <div class="brand-name">PERFUME <span>PARADISE</span></div>
+          <div class="brand-subtext">INDIA • SINCE 2013</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#bestsellers" class="nav-link">Shop</a>
+        <a href="#bestsellers" class="nav-link" onclick="currentCategory='mens'; renderProducts();">Men's</a>
+        <a href="#bestsellers" class="nav-link" onclick="currentCategory='womens'; renderProducts();">Women's</a>
+        <a href="#bestsellers" class="nav-link" onclick="currentCategory='unisex'; renderProducts();">Unisex</a>
+        <a href="#bestsellers" class="nav-link" onclick="currentCategory='attar'; renderProducts();">Attar & Perfume Oils</a>
+        <a href="#gifting" class="nav-link">Gift Sets</a>
+        <a href="#categories" class="nav-link">Collections</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#footer" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Utility Icons -->
+      <div class="nav-actions">
+        <button class="nav-action-btn" id="searchToggleBtn" title="Search Fragrances" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </button>
+
+        <button class="nav-action-btn" id="wishlistToggleBtn" title="Wishlist" aria-label="Wishlist" onclick="showToast('Your saved wishlist items can be viewed in products');">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="badge-count" id="wishlistBadge" style="display:none;">0</span>
+        </button>
+
+        <button class="nav-action-btn" id="accountToggleBtn" title="My Account" aria-label="Account" onclick="showToast('VIP Member Portal: Login or enter email at checkout');">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button class="nav-action-btn" id="cartToggleBtn" title="Shopping Bag" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="badge-count" id="cartBadge">0</span>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-pattern-bg"></div>
+    <div class="hero-glow"></div>
+
+    <div class="container hero-grid">
+      
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-badge-pill">
+          <span class="crown-icon">👑</span>
+          <span>PREMIUM ARABIAN ROYAL PERFUMERY</span>
+        </div>
+
+        <h1 class="hero-title">
+          FRAGRANCE THAT LEAVES A <br>
+          <span class="highlight-gold">LASTING IMPRESSION</span>
+        </h1>
+
+        <p class="hero-description">
+          Discover premium Arabian-inspired fragrances crafted for unforgettable moments.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#bestsellers" class="btn btn-primary">
+            <span>SHOP NOW</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </a>
+          <a href="#categories" class="btn btn-secondary">
+            <span>EXPLORE COLLECTIONS</span>
+          </a>
+        </div>
+
+        <!-- 3 Pillars Features Bar -->
+        <div class="hero-features-bar">
+          <div class="hero-feature-item">
+            <div class="hero-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="hero-feat-text">
+              <h5>20+ HOURS</h5>
+              <p>Unmatched Longevity</p>
+            </div>
+          </div>
+
+          <div class="hero-feature-item">
+            <div class="hero-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="hero-feat-text">
+              <h5>NON-ALCOHOLIC</h5>
+              <p>Pure Artisan Blends</p>
+            </div>
+          </div>
+
+          <div class="hero-feature-item">
+            <div class="hero-feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="hero-feat-text">
+              <h5>FREE SHIPPING</h5>
+              <p>Across All India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual Stage -->
+      <div class="hero-stage">
+        
+        <!-- Floating Longevity Badge -->
+        <div class="floating-badge">
+          <div class="floating-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="floating-badge-text">
+            <h6>EXTRAIT CONCENTRATION</h6>
+            <span>Pure Arabian Oils</span>
+          </div>
+        </div>
+
+        <!-- Floating Heritage Badge -->
+        <div class="floating-badge right">
+          <div class="floating-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="floating-badge-text">
+            <h6>SINCE 2013</h6>
+            <span>Crafted In India</span>
+          </div>
+        </div>
+
+        <!-- Main Bottle Showcase Card -->
+        <div class="hero-bottle-frame">
+          <img src="assets/images/my-signature.jpg" id="heroBottleImg" alt="Perfume Paradise India - My Signature Bottle on Marble with Warm Gold Silk">
+          
+          <div class="hero-bottle-tag">
+            <div class="hero-bottle-info">
+              <h4 id="heroBottleTitle">MY SIGNATURE</h4>
+              <p id="heroBottleNotes">Sandalwood • Cashmere • Vanilla Saffron</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('my-signature')">
+              BUY NOW • ₹1,699
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Scent Switchers -->
+        <div class="hero-bottle-switchers" title="Click to view iconic blends">
+          <button class="hero-thumb-btn active" data-scent="my-signature" title="My Signature">
+            <img src="assets/images/my-signature.jpg" alt="My Signature">
+          </button>
+          <button class="hero-thumb-btn" data-scent="night-mood" title="Night Mood">
+            <img src="assets/images/night-mood.jpg" alt="Night Mood">
+          </button>
+          <button class="hero-thumb-btn" data-scent="khalifa" title="Khalifa">
+            <img src="assets/images/khalifa.jpg" alt="Khalifa">
+          </button>
+          <button class="hero-thumb-btn" data-scent="quraishi" title="Quraishi">
+            <img src="assets/images/quraishi.jpg" alt="Quraishi">
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CATEGORIES SECTION (6 Cards)
+       ========================================================================== -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Olfactory Realms</div>
+        <h2 class="section-title">EXPLORE OUR COLLECTIONS</h2>
+        <p class="section-subtitle">
+          Indulge in six meticulously curated categories designed for discerning fragrance connoisseurs across India.
+        </p>
+      </div>
+
+      <div class="categories-grid">
+        
+        <!-- 1. Men's Perfumes -->
+        <a href="#bestsellers" class="category-card" onclick="currentCategory='mens'; renderProducts();">
+          <img class="category-img" src="assets/images/khalifa.jpg" alt="Men's Perfumes Collection">
+          <div class="category-overlay">
+            <span class="category-count">12 Fragrances</span>
+            <h3 class="category-name">Men's Perfumes</h3>
+            <p class="category-desc">Rich Cambodian oud, smoky birch, atlas cedar and magnetic leather.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+        <!-- 2. Women's Perfumes -->
+        <a href="#bestsellers" class="category-card" onclick="currentCategory='womens'; renderProducts();">
+          <img class="category-img" src="assets/images/romancia.jpg" alt="Women's Perfumes Collection">
+          <div class="category-overlay">
+            <span class="category-count">10 Fragrances</span>
+            <h3 class="category-name">Women's Perfumes</h3>
+            <p class="category-desc">Velvety Taif rose, sweet amber, wild crimson berries and bourbon vanilla.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+        <!-- 3. Unisex Fragrances -->
+        <a href="#bestsellers" class="category-card" onclick="currentCategory='unisex'; renderProducts();">
+          <img class="category-img" src="assets/images/night-mood.jpg" alt="Unisex Fragrances Collection">
+          <div class="category-overlay">
+            <span class="category-count">14 Fragrances</span>
+            <h3 class="category-name">Unisex Fragrances</h3>
+            <p class="category-desc">Harmonious symphonies of sandalwood, cashmere, plum and golden spices.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+        <!-- 4. Attar & Perfume Oils -->
+        <a href="#bestsellers" class="category-card" onclick="currentCategory='attar'; renderProducts();">
+          <img class="category-img" src="assets/images/bilal.jpg" alt="Attar & Perfume Oils Collection">
+          <div class="category-overlay">
+            <span class="category-count">100% Non-Alcoholic</span>
+            <h3 class="category-name">Attar & Perfume Oils</h3>
+            <p class="category-desc">Pure concentrated perfume oils macerated with traditional Arabian techniques.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+        <!-- 5. Gift Sets -->
+        <a href="#gifting" class="category-card">
+          <img class="category-img" src="assets/images/gift-sets.jpg" alt="Gift Sets Collection">
+          <div class="category-overlay">
+            <span class="category-count">Bespoke Packaging</span>
+            <h3 class="category-name">Gift Sets</h3>
+            <p class="category-desc">Magnificent emerald boxes finished with gold satin ribbons and wax seal accents.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+        <!-- 6. Discovery Sets -->
+        <a href="#discovery" class="category-card">
+          <img class="category-img" src="assets/images/discovery-box.jpg" alt="Discovery Sets Collection">
+          <div class="category-overlay">
+            <span class="category-count">5 Luxury Vials</span>
+            <h3 class="category-name">Discovery Sets</h3>
+            <p class="category-desc">Sample five best-selling perfumes at home with a redeemable ₹500 voucher.</p>
+            <span class="category-action">Explore Collection →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BEST SELLERS SECTION
+       ========================================================================== -->
+  <section class="bestsellers-section" id="bestsellers">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="section-label">Most Coveted Scents</div>
+        <h2 class="section-title">BEST SELLING FRAGRANCES</h2>
+        <p class="section-subtitle">
+          Celebrated for their signature 20+ hour silage and rich Arabian-inspired notes. Handcrafted with obsession.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-nav">
+        <button class="filter-btn active" data-filter="all">All Bestsellers</button>
+        <button class="filter-btn" data-filter="mens">Men's Perfumes</button>
+        <button class="filter-btn" data-filter="womens">Women's Perfumes</button>
+        <button class="filter-btn" data-filter="unisex">Unisex Fragrances</button>
+        <button class="filter-btn" data-filter="attar">Attar & Oils</button>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="products-grid" id="productsContainer">
+        <!-- Rendered via JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ARABIAN COLLECTION SECTION
+       ========================================================================== -->
+  <section class="arabian-section" id="arabian-art">
+    <div class="container arabian-grid">
+      
+      <!-- Visual with Agarwood, Mabkhara & Damask Rose -->
+      <div class="arabian-visual-stage">
+        <div class="arabian-frame-decor"></div>
+        <div class="arabian-frame-decor br"></div>
+        <div class="arabian-visual-box">
+          <img src="assets/images/arabian-art.jpg" alt="The Art of Arabian Perfumery - Oud Wood, Mabkhara Incense and Damask Roses">
+        </div>
+      </div>
+
+      <!-- Editorial Narrative & Notes Breakdown -->
+      <div class="arabian-content">
+        <div class="section-label" style="color:var(--gold-300);">Traditional Mastery</div>
+        <h2 class="section-title light">THE ART OF ARABIAN PERFUMERY</h2>
+        
+        <p class="section-subtitle light" style="margin: 0 0 24px 0; text-align: left;">
+          Explore rich oud, warm amber, refined musk, exotic woods and captivating oriental fragrances inspired by the traditions of Arabian perfumery.
+        </p>
+
+        <!-- 4 Note Pillars -->
+        <div class="arabian-notes-grid">
+          <div class="arabian-note-card">
+            <div class="note-head">
+              <span class="note-bullet"></span>
+              <h4 class="note-title">DEHN AL OUD</h4>
+            </div>
+            <p class="note-desc">Aged agarwood distilled through generational clay-pot extraction for deep, resinous majesty.</p>
+          </div>
+
+          <div class="arabian-note-card">
+            <div class="note-head">
+              <span class="note-bullet"></span>
+              <h4 class="note-title">WARM AMBER</h4>
+            </div>
+            <p class="note-desc">Golden resinous warmth that infuses the scent with radiant, sensual, long-lasting projection.</p>
+          </div>
+
+          <div class="arabian-note-card">
+            <div class="note-head">
+              <span class="note-bullet"></span>
+              <h4 class="note-title">TAIF ROSE</h4>
+            </div>
+            <p class="note-desc">Rare mountain roses harvested at dawn, imparting an intoxicating, honeyed velvety heart.</p>
+          </div>
+
+          <div class="arabian-note-card">
+            <div class="note-head">
+              <span class="note-bullet"></span>
+              <h4 class="note-title">REFINED MUSK</h4>
+            </div>
+            <p class="note-desc">Clean, regal white musk and precious sandalwood that linger softly on the pulse points for days.</p>
+          </div>
+        </div>
+
+        <a href="#bestsellers" class="btn btn-primary" onclick="currentCategory='all'; renderProducts();">
+          <span>EXPLORE COLLECTION</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       DISCOVERY SET SECTION (Dark Emerald)
+       ========================================================================== -->
+  <section class="discovery-section" id="discovery">
+    <div class="discovery-bg-ornament"></div>
+
+    <div class="container discovery-grid">
+      
+      <!-- Content Left -->
+      <div class="discovery-content">
+        <div class="section-label" style="color:var(--gold-300);">Signature Scent Finder</div>
+        <h2 class="section-title light">DISCOVER YOUR SIGNATURE SCENT</h2>
+        
+        <p class="section-subtitle light" style="margin: 0; text-align: left;">
+          Explore a selection of fragrances and find the scent that feels uniquely yours.
+        </p>
+
+        <div class="discovery-features-list">
+          <div class="discovery-feature-line">
+            <div class="line-icon">✦</div>
+            <div>
+              <strong>5 x 5ml Miniature Luxury Sprays</strong>
+              <p>Experience Oud Al Noor, Khalifa, My Signature, Bilal & First Night in travel-ready glass atomizers.</p>
+            </div>
+          </div>
+
+          <div class="discovery-feature-line">
+            <div class="line-icon">✦</div>
+            <div>
+              <strong>100% Redeemable ₹500 Voucher Included</strong>
+              <p>Use your exclusive voucher code toward the purchase of any full-size 50ml or 100ml flacon.</p>
+            </div>
+          </div>
+
+          <div class="discovery-feature-line">
+            <div class="line-icon">✦</div>
+            <div>
+              <strong>Emerald Velvet Presentation Box</strong>
+              <p>Cushioned in plush velvet with intricate gold foil calligraphy and olfactory tasting cards.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="addToCart('oud-al-noor', '5-Vial Discovery Coffret Set')">
+            <span>SHOP DISCOVERY SETS • ₹999</span>
+          </button>
+          <span style="font-size:0.85rem; color:var(--gold-300);">Free Pan-India Delivery</span>
+        </div>
+      </div>
+
+      <!-- Coffret Box Image Right -->
+      <div class="discovery-box-preview">
+        <span class="discovery-ribbon">Bespoke Coffret</span>
+        <img src="assets/images/discovery-box.jpg" alt="Perfume Paradise India Luxury Discovery Set Box in Emerald Velvet">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       GIFTING SECTION
+       ========================================================================== -->
+  <section class="gifting-section" id="gifting">
+    <div class="container gifting-grid">
+      
+      <!-- Gifting Visual Left -->
+      <div class="gifting-media-wrapper">
+        <div class="gifting-image-frame">
+          <img src="assets/images/gift-sets.jpg" alt="Perfume Paradise India Luxury Gifting Box with Gold Ribbon and Crystal Attar">
+        </div>
+      </div>
+
+      <!-- Gifting Content Right -->
+      <div class="gifting-content">
+        <div class="section-label">Bespoke Presentation</div>
+        <h2 class="section-title">GIFTS THAT SPEAK ELEGANCE</h2>
+        
+        <p class="section-subtitle" style="margin: 0 0 24px 0; text-align: left;">
+          Beautiful fragrances for birthdays, anniversaries, weddings and special occasions.
+        </p>
+
+        <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:28px;">
+          Nothing captures genuine devotion like an unforgettable fragrance. Every Perfume Paradise India gift set arrives wrapped in emerald and gold packaging, adorned with hand-tied satin ribbons, a bespoke wax seal and a personalized handwritten message card.
+        </p>
+
+        <!-- Gift Highlights -->
+        <div class="gifting-services-pills">
+          <div class="gift-pill-item">
+            <span class="gift-pill-icon">🎁</span>
+            <span class="gift-pill-text">Emerald Luxury Box</span>
+          </div>
+          <div class="gift-pill-item">
+            <span class="gift-pill-icon">✉️</span>
+            <span class="gift-pill-text">Calligraphy Note</span>
+          </div>
+          <div class="gift-pill-item">
+            <span class="gift-pill-icon">👑</span>
+            <span class="gift-pill-text">Wax Seal Hallmark</span>
+          </div>
+        </div>
+
+        <button class="btn btn-emerald" onclick="addToCart('my-signature', 'Bespoke Royal Gift Coffret'); showToast('Royal Gift Box added to bag!');">
+          <span>SHOP GIFT SETS</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       WHY PERFUME PARADISE INDIA (4 Features)
+       ========================================================================== -->
+  <section class="why-section" id="why-us">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="section-label">Our Hallmarks</div>
+        <h2 class="section-title">WHY PERFUME PARADISE INDIA</h2>
+        <p class="section-subtitle">
+          Distinguished by pure perfume oils, master perfumery techniques, and dedicated customer delight.
+        </p>
+      </div>
+
+      <div class="why-features-grid">
+        
+        <!-- Feature 1 -->
+        <div class="why-feature-card">
+          <div class="why-icon-emblem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          </div>
+          <h3 class="why-feature-title">PREMIUM QUALITY</h3>
+          <p class="why-feature-desc">Carefully selected fragrances crafted with exceptional raw materials and aged distillations.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="why-feature-card">
+          <div class="why-icon-emblem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="why-feature-title">LONG-LASTING FRAGRANCES</h3>
+          <p class="why-feature-desc">Designed for a memorable scent experience that projects gracefully for over 20 hours.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="why-feature-card">
+          <div class="why-icon-emblem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"></path>
+            </svg>
+          </div>
+          <h3 class="why-feature-title">ARABIAN INSPIRED</h3>
+          <p class="why-feature-desc">Rich and elegant fragrance profiles rooted in the illustrious heritage of Middle Eastern perfumery.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="why-feature-card">
+          <div class="why-icon-emblem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <h3 class="why-feature-title">DELIVERY ACROSS INDIA</h3>
+          <p class="why-feature-desc">Convenient online ordering across India with secure dispatch and express doorstep delivery.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ABOUT BRAND STORY SECTION
+       ========================================================================== -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      
+      <!-- Brand Story Content -->
+      <div class="about-story-content">
+        <div class="section-label" style="color:var(--gold-300);">Heritage & Vision</div>
+        <h2 class="section-title light">THE STORY OF PERFUME PARADISE INDIA</h2>
+
+        <p class="about-lead">
+          "A great scent is not an accessory — it is an invisible crown, a memory woven into air."
+        </p>
+
+        <p class="about-body-text">
+          Perfume Paradise India brings premium Arabian-inspired fragrances to fragrance lovers across India, combining elegance, quality and accessible luxury.
+        </p>
+
+        <p class="about-body-text" style="margin-top:-14px;">
+          Established in 2013, our house began with a singular devotion: bringing the majestic oriental sillage of Arabian royal courts into modern daily rituals. Each formulation is blended with concentrated perfume essences, creating rich multi-layered scents that linger for more than 20 hours without alcoholic harshness.
+        </p>
+
+        <!-- Brand Metrics -->
+        <div class="about-metrics-bar">
+          <div class="about-metric-item">
+            <h3>2013</h3>
+            <p>Year Established</p>
+          </div>
+          <div class="about-metric-item">
+            <h3>100K+</h3>
+            <p>Fragrance Lovers</p>
+          </div>
+          <div class="about-metric-item">
+            <h3>20+ Hrs</h3>
+            <p>Verified Sillage</p>
+          </div>
+        </div>
+
+        <a href="#bestsellers" class="btn btn-primary">
+          <span>OUR STORY</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Visual Collage -->
+      <div class="about-visual-collage">
+        <img class="about-main-img" src="assets/images/bilal-royal.jpg" alt="Perfume Paradise India Bilal Royal Flacon with Gold Dome and Arabic Lettering">
+        
+        <div class="about-crest-badge">
+          <img class="logo-thumb" src="assets/images/logo.jpg" alt="Logo Crest">
+          <div>
+            <h5>PERFUME PARADISE</h5>
+            <p>ESTABLISHED 2013 • INDIA</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INSTAGRAM SECTION
+       ========================================================================== -->
+  <section class="instagram-section" id="instagram">
+    <div class="container">
+      
+      <div class="section-header" style="margin-bottom: 24px;">
+        <div class="section-label">Social Community</div>
+        <h2 class="section-title">FOLLOW PERFUME PARADISE INDIA</h2>
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="instagram-handle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+          </svg>
+          <span>@perfumeparadise.india</span>
+        </a>
+      </div>
+
+      <!-- 6-Tile Instagram Grid -->
+      <div class="instagram-grid">
+        
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/my-signature.jpg" alt="Instagram Post - My Signature on Marble">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 2.4k</span>
+            <span class="insta-fragrance-tag">#MySignature</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/night-mood.jpg" alt="Instagram Post - Night Mood Arabian Scent">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 3.1k</span>
+            <span class="insta-fragrance-tag">#NightMood</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/bilal.jpg" alt="Instagram Post - Bilal with Jasmine & Lantern">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 4.8k</span>
+            <span class="insta-fragrance-tag">#BilalAttar</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/quraishi.jpg" alt="Instagram Post - Quraishi on Black Marble">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 1.9k</span>
+            <span class="insta-fragrance-tag">#QuraishiOud</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/khalifa.jpg" alt="Instagram Post - Khalifa Luxury Spray">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 3.5k</span>
+            <span class="insta-fragrance-tag">#KhalifaEDP</span>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="insta-tile">
+          <img src="assets/images/romancia.jpg" alt="Instagram Post - Romancia Red Damask">
+          <div class="insta-overlay">
+            <span style="font-size:1.2rem;">♥ 2.7k</span>
+            <span class="insta-fragrance-tag">#RomanciaRose</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       NEWSLETTER SECTION
+       ========================================================================== -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="container newsletter-box">
+      <div class="section-label" style="color:var(--gold-300);">Private Reserve Club</div>
+      <h2 class="section-title light">ENTER THE WORLD OF FRAGRANCE</h2>
+      
+      <p class="section-subtitle light">
+        Subscribe for new launches, exclusive collections and special offers.
+      </p>
+
+      <form id="newsletterForm" class="newsletter-form-wrap">
+        <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Enter your email address..." required>
+        <!-- Requested button with "Add to cart" / Subscribe designation -->
+        <button type="submit" class="newsletter-btn">Add to cart</button>
+      </form>
+
+      <p class="newsletter-note">
+        ✦ Receive an instant 10% coupon code: <strong>PARADISE10</strong> on your first order.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        
+        <!-- Brand & Reference Logo -->
+        <div class="footer-brand-column">
+          <div class="footer-logo-wrap">
+            <img class="footer-logo-thumb" src="assets/images/logo.jpg" alt="Perfume Paradise India Logo Reference">
+            <div>
+              <div class="footer-brand-title">PERFUME PARADISE</div>
+              <div class="footer-brand-tagline">INDIA • SINCE 2013</div>
+            </div>
+          </div>
+          
+          <p class="footer-brand-bio">
+            Specializing in premium Arabian-inspired perfumes, concentrated attars and artisanal blends. Designed for extraordinary 20+ hour longevity and accessible luxury across India.
+          </p>
+
+          <div class="footer-social-links">
+            <a href="https://instagram.com/perfumeparadise.india" target="_blank" rel="noopener" class="footer-social-btn" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="footer-social-btn" title="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://wa.me/" class="footer-social-btn" title="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Shop Links Column -->
+        <div>
+          <h4 class="footer-column-title">Shop</h4>
+          <ul class="footer-links-list">
+            <li><a href="#bestsellers" onclick="currentCategory='mens'; renderProducts();">Men's Perfumes</a></li>
+            <li><a href="#bestsellers" onclick="currentCategory='womens'; renderProducts();">Women's Perfumes</a></li>
+            <li><a href="#bestsellers" onclick="currentCategory='unisex'; renderProducts();">Unisex Fragrances</a></li>
+            <li><a href="#bestsellers" onclick="currentCategory='attar'; renderProducts();">Attar & Perfume Oils</a></li>
+            <li><a href="#discovery">Discovery Sets</a></li>
+            <li><a href="#gifting">Luxury Gift Sets</a></li>
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div>
+          <h4 class="footer-column-title">About</h4>
+          <ul class="footer-links-list">
+            <li><a href="#about">The Story of Perfume Paradise</a></li>
+            <li><a href="#arabian-art">The Art of Arabian Perfumery</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#instagram">Customer Reviews & Gallery</a></li>
+            <li><a href="#newsletter">VIP Fragrance Club</a></li>
+            <li><a href="#">Halal & Non-Alcoholic Standards</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care & Image Reference Added -->
+        <div>
+          <h4 class="footer-column-title">Client Concierge</h4>
+          
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <div>
+              <strong>Fragrance Hotline & WhatsApp</strong>
+              <div style="font-size:0.78rem; color:var(--text-muted);">+91 98765 43210 (Mon - Sat 10am - 8pm)</div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+            <div>
+              <strong>Email Inquiries</strong>
+              <div style="font-size:0.78rem; color:var(--text-muted);">concierge@perfumeparadise.in</div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div>
+              <strong>Pan-India Shipping</strong>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Express delivery to all Indian pin codes</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          © 2013 - 2026 PERFUME PARADISE INDIA. All Rights Reserved. Artisanal Arabian Fragrance House.
+        </div>
+
+        <div class="footer-payments">
+          <span class="payment-badge">UPI</span>
+          <span class="payment-badge">Google Pay</span>
+          <span class="payment-badge">PhonePe</span>
+          <span class="payment-badge">Paytm</span>
+          <span class="payment-badge">Visa</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">Cash on Delivery</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & SLIDE-OUT DRAWERS
+       ========================================================================== -->
+  
+  <!-- Backdrop Overlay -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+
+  <!-- Cart Slide-Out Drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="cart-header">
+      <div class="cart-title">Your Fragrance Bag</div>
+      <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close Cart">✕</button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="cart-shipping-bar">
+      <div id="shippingProgressText">Add <strong>₹999</strong> for <strong>Free Express Shipping across India</strong></div>
+      <div class="shipping-progress-track">
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width:0%;"></div>
+      </div>
+    </div>
+
+    <!-- Items Container -->
+    <div class="cart-items-body" id="cartItemsContainer">
+      <!-- Items dynamically populated via JS -->
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="cart-footer">
+      <div class="cart-subtotal-row">
+        <span class="cart-subtotal-label">Subtotal</span>
+        <span class="cart-subtotal-val" id="cartSubtotal">₹0</span>
+      </div>
+      <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:14px; text-align:center;">
+        Taxes included • Free luxury sample included with every bottle
+      </p>
+      <button class="cart-checkout-btn" onclick="showToast('Proceeding to Secure Checkout with Razorpay / UPI / COD across India...');">
+        <span>Proceed To Checkout</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="quick-view-modal" id="quickViewModal" role="dialog" aria-modal="true">
+    <button class="qv-close-btn" id="qvCloseBtn" aria-label="Close Modal">✕</button>
+    <div id="qvModalContent">
+      <!-- Content populated via JS -->
+    </div>
+  </div>
+
+  <!-- Live Search Overlay Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-input-box">
+      <svg class="search-icon-inside" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="searchField" class="search-field" placeholder="Search by name, notes (e.g., Oud, Rose, Sandalwood)...">
+      <button id="searchCloseBtn" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--gold-400); font-size:1.4rem;">✕</button>
+    </div>
+
+    <div class="search-results-area" id="searchResultsArea">
+      <p style="color:var(--ivory-200); text-align:center; grid-column:1/-1;">Type a fragrance name (e.g., Khalifa, Bilal, Oud) or note (Sandalwood, Vanilla, Amber)...</p>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
