@@ -1,9 +1,10 @@
 /**
  * PERFUME PARADISE INDIA - E-COMMERCE JAVASCRIPT
- * Interactive Cart, Fragrance Pyramid Quick View, Live Search, Wishlist & Scent Switcher
+ * Interactive Cart, Fragrance Pyramid Quick View, Live Search, Wishlist,
+ * 50ml (₹599) & 20ml (₹299) Size Selectors, and Shipping Address Checkout
  */
 
-// Fragrance Catalog Database
+// Fragrance Catalog Database with 50ml (₹599) and 20ml (₹299) sizing
 const PRODUCTS_DATA = [
   {
     id: 'oud-al-noor',
@@ -11,8 +12,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Extrait de Parfum • Royal Cambodian Oud',
     category: 'mens',
     categoryName: "Men's & Unisex",
-    price: 1899,
-    originalPrice: 2999,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/oud-al-noor.jpg',
     badge: 'Bestseller',
     badgeType: 'gold',
@@ -29,8 +32,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Royal Smoked Cedar & Amber',
     category: 'mens',
     categoryName: "Men's Luxury",
-    price: 1499,
-    originalPrice: 2499,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/khalifa.jpg',
     badge: 'Trending',
     badgeType: 'emerald',
@@ -47,8 +52,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Vibrant Tropical Birch Smoke',
     category: 'unisex',
     categoryName: 'Unisex Signature',
-    price: 1499,
-    originalPrice: 2499,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/pineapple.jpg',
     badge: 'Signature',
     badgeType: 'gold',
@@ -65,8 +72,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Golden Sandalwood & Cashmere',
     category: 'unisex',
     categoryName: 'Private Reserve',
-    price: 1699,
-    originalPrice: 2799,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/my-signature.jpg',
     badge: 'Iconic Choice',
     badgeType: 'gold',
@@ -83,8 +92,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Romantic Damask Rose & Vanilla',
     category: 'womens',
     categoryName: "Women's Romance",
-    price: 1499,
-    originalPrice: 2499,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/first-night.jpg',
     badge: 'Romantic',
     badgeType: 'emerald',
@@ -101,8 +112,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Midnight Plum & Roasted Tonka',
     category: 'unisex',
     categoryName: 'Evening Extrait',
-    price: 1599,
-    originalPrice: 2599,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/night-mood.jpg',
     badge: 'Sensual',
     badgeType: 'gold',
@@ -119,8 +132,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Sacred Frankincense & Taif Rose',
     category: 'attar',
     categoryName: 'Artisanal Attar & EDP',
-    price: 1499,
-    originalPrice: 2499,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/bilal.jpg',
     badge: 'Arabian Heritage',
     badgeType: 'gold',
@@ -137,8 +152,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Royal Dehn Al Oud & Black Amber',
     category: 'mens',
     categoryName: "Men's Royal",
-    price: 1799,
-    originalPrice: 2899,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/quraishi.jpg',
     badge: 'Collector Choice',
     badgeType: 'emerald',
@@ -155,8 +172,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Wild Crimson Berries & Sweet Rose',
     category: 'womens',
     categoryName: "Women's Luxe",
-    price: 1499,
-    originalPrice: 2399,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/romancia.jpg',
     badge: 'Floral Luxe',
     badgeType: 'emerald',
@@ -173,8 +192,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Soft Petals & Sweet Almond Cloud',
     category: 'womens',
     categoryName: 'Feminine Essence',
-    price: 1399,
-    originalPrice: 2199,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/lovely.jpg',
     badge: 'Gentle Pure',
     badgeType: 'gold',
@@ -191,8 +212,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Rich Cacao & Spiced Bourbon Amber',
     category: 'unisex',
     categoryName: 'Gourmand Luxe',
-    price: 1499,
-    originalPrice: 2499,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/dark-chocolate.jpg',
     badge: 'Gourmand',
     badgeType: 'emerald',
@@ -209,8 +232,10 @@ const PRODUCTS_DATA = [
     subtitle: 'Eau de Parfum • Imperial Jasmine & Royal White Musk',
     category: 'womens',
     categoryName: "Princess Edition",
-    price: 1499,
-    originalPrice: 2399,
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
     image: 'assets/images/amira.jpg',
     badge: 'Royal Floral',
     badgeType: 'gold',
@@ -227,6 +252,8 @@ const PRODUCTS_DATA = [
 let cart = JSON.parse(localStorage.getItem('pp_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('pp_wishlist')) || [];
 let currentCategory = 'all';
+let selectedProductSizes = {}; // Tracks chosen size per product card ('50ml' or '20ml')
+let qvActiveSize = '50ml'; // Active size in Quick View modal
 
 // DOM Ready initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -238,6 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLiveSearch();
   initNewsletter();
   updateHeaderBadges();
+  loadSavedCustomerInfo();
 });
 
 /* ==========================================================================
@@ -331,8 +359,31 @@ function initHeroSwitcher() {
 }
 
 /* ==========================================================================
-   PRODUCTS RENDERING & FILTERING
+   PRODUCTS RENDERING & SIZE SWITCHING (50ml ₹599 / 20ml ₹299)
    ========================================================================== */
+function selectProductSize(productId, size) {
+  selectedProductSizes[productId] = size;
+  const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+  if (!card) return;
+
+  const btn20 = card.querySelector('.btn-size-20');
+  const btn50 = card.querySelector('.btn-size-50');
+  const priceCurrent = card.querySelector('.product-price-current');
+  const priceOriginal = card.querySelector('.product-price-original');
+
+  if (size === '20ml') {
+    if (btn20) btn20.classList.add('active');
+    if (btn50) btn50.classList.remove('active');
+    if (priceCurrent) priceCurrent.textContent = '₹299';
+    if (priceOriginal) priceOriginal.textContent = '₹499';
+  } else {
+    if (btn50) btn50.classList.add('active');
+    if (btn20) btn20.classList.remove('active');
+    if (priceCurrent) priceCurrent.textContent = '₹599';
+    if (priceOriginal) priceOriginal.textContent = '₹999';
+  }
+}
+
 function renderProducts() {
   const container = document.getElementById('productsContainer');
   if (!container) return;
@@ -343,6 +394,10 @@ function renderProducts() {
 
   container.innerHTML = filtered.map(product => {
     const isWishlisted = wishlist.includes(product.id);
+    const currSize = selectedProductSizes[product.id] || '50ml';
+    const currPrice = currSize === '20ml' ? product.price20ml : product.price50ml;
+    const currOrigPrice = currSize === '20ml' ? product.originalPrice20ml : product.originalPrice50ml;
+
     return `
       <div class="product-card" data-id="${product.id}">
         <div class="product-media">
@@ -375,14 +430,27 @@ function renderProducts() {
             <span>Notes:</span> ${product.topNotes.split(',')[0]}, ${product.heartNotes.split(',')[0]} & ${product.baseNotes.split(',')[0]}
           </div>
 
+          <!-- Bottle Size Selector Buttons -->
+          <div class="card-size-selector">
+            <span class="card-size-label">Select Bottle Size:</span>
+            <div class="size-btn-group">
+              <button type="button" class="card-size-btn btn-size-20 ${currSize === '20ml' ? 'active' : ''}" onclick="selectProductSize('${product.id}', '20ml')">
+                20ml • ₹299
+              </button>
+              <button type="button" class="card-size-btn btn-size-50 ${currSize === '50ml' ? 'active' : ''}" onclick="selectProductSize('${product.id}', '50ml')">
+                50ml • ₹599
+              </button>
+            </div>
+          </div>
+
           <div class="product-pricing-wrap">
-            <span class="product-price-current">₹${product.price.toLocaleString('en-IN')}</span>
-            <span class="product-price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>
-            <span class="product-discount-tag">${Math.round((1 - product.price / product.originalPrice) * 100)}% OFF</span>
+            <span class="product-price-current">₹${currPrice.toLocaleString('en-IN')}</span>
+            <span class="product-price-original">₹${currOrigPrice.toLocaleString('en-IN')}</span>
+            <span class="product-discount-tag">40% OFF</span>
           </div>
 
           <div class="product-card-actions">
-            <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+            <button class="btn-add-cart" onclick="addCurrentCardToCart('${product.id}')">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               Add To Cart
             </button>
@@ -404,8 +472,14 @@ function renderProducts() {
   });
 }
 
+function addCurrentCardToCart(productId) {
+  const size = selectedProductSizes[productId] || '50ml';
+  const price = size === '20ml' ? 299 : 599;
+  addToCart(productId, size, price);
+}
+
 /* ==========================================================================
-   CART SYSTEM
+   CART SYSTEM WITH SHIPPING ADDRESS FORM
    ========================================================================== */
 function initCart() {
   const cartToggleBtn = document.getElementById('cartToggleBtn');
@@ -424,6 +498,7 @@ function initCart() {
       closeCart();
       closeQuickView();
       closeSearch();
+      closeOrderModal();
     });
   }
 }
@@ -436,30 +511,38 @@ function openCart() {
 
 function closeCart() {
   document.getElementById('cartDrawer').classList.remove('active');
-  document.getElementById('modalBackdrop').classList.remove('active');
+  if (!document.getElementById('orderSuccessModal').classList.contains('active')) {
+    document.getElementById('modalBackdrop').classList.remove('active');
+  }
 }
 
-function addToCart(productId, size = '50ml Eau de Parfum') {
+function addToCart(productId, size = '50ml', price = null) {
   const product = PRODUCTS_DATA.find(p => p.id === productId);
   if (!product) return;
 
-  const existing = cart.find(item => item.id === productId && item.size === size);
+  const itemPrice = price !== null 
+    ? price 
+    : (size.includes('20ml') ? product.price20ml : product.price50ml);
+
+  const sizeLabel = size.includes('20ml') ? '20ml Luxury Pocket Spray' : (size.includes('50ml') ? '50ml Signature Flacon' : size);
+
+  const existing = cart.find(item => item.id === productId && item.size === sizeLabel);
   if (existing) {
     existing.qty += 1;
   } else {
     cart.push({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: itemPrice,
       image: product.image,
-      size: size,
+      size: sizeLabel,
       qty: 1
     });
   }
 
   saveCart();
   updateHeaderBadges();
-  showToast(`Added ${product.name} to cart!`);
+  showToast(`Added ${product.name} (${sizeLabel.split(' ')[0]}) to bag!`);
   openCart();
 }
 
@@ -479,7 +562,7 @@ function removeCartItem(index) {
   saveCart();
   renderCartItems();
   updateHeaderBadges();
-  showToast('Item removed from cart');
+  showToast('Item removed from bag');
 }
 
 function saveCart() {
@@ -491,6 +574,8 @@ function renderCartItems() {
   const subtotalEl = document.getElementById('cartSubtotal');
   const shippingMsgEl = document.getElementById('shippingProgressText');
   const shippingFillEl = document.getElementById('shippingProgressFill');
+  const checkoutSection = document.getElementById('cartCheckoutSection');
+  const checkoutBtn = document.getElementById('checkoutSubmitBtn');
 
   if (!container) return;
 
@@ -499,13 +584,23 @@ function renderCartItems() {
       <div class="cart-empty-message">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 16px; color:var(--gold-500);"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <h4 style="font-family:var(--font-serif-royal); margin-bottom:8px; color:var(--emerald-950);">Your Shopping Bag Is Empty</h4>
-        <p style="font-size:0.84rem;">Indulge in our Arabian collection and discover your signature fragrance.</p>
+        <p style="font-size:0.84rem;">Select your favourite perfumes in 50ml (₹599) or 20ml (₹299).</p>
       </div>
     `;
     if (subtotalEl) subtotalEl.textContent = '₹0';
     if (shippingMsgEl) shippingMsgEl.innerHTML = 'Add <strong>₹999</strong> for <strong>Free Express Shipping across India</strong>';
     if (shippingFillEl) shippingFillEl.style.width = '0%';
+    if (checkoutSection) checkoutSection.style.display = 'none';
+    if (checkoutBtn) checkoutBtn.style.opacity = '0.6';
     return;
+  }
+
+  // If cart has items, display the address collection form
+  if (checkoutSection) {
+    checkoutSection.style.display = 'block';
+  }
+  if (checkoutBtn) {
+    checkoutBtn.style.opacity = '1';
   }
 
   let subtotal = 0;
@@ -516,7 +611,7 @@ function renderCartItems() {
         <img class="cart-item-img" src="${item.image}" alt="${item.name}">
         <div class="cart-item-details">
           <h4 class="cart-item-name">${item.name}</h4>
-          <div class="cart-item-notes">${item.size}</div>
+          <div class="cart-item-notes" style="color:var(--gold-700); font-weight:600;">${item.size}</div>
           <div class="cart-item-bottom">
             <div class="cart-qty-ctrl">
               <button class="cart-qty-btn" onclick="updateCartQty(${index}, -1)">-</button>
@@ -549,6 +644,161 @@ function renderCartItems() {
 }
 
 /* ==========================================================================
+   ADDRESS FORM & ORDER CHECKOUT PROCESSING
+   ========================================================================== */
+function loadSavedCustomerInfo() {
+  const saved = localStorage.getItem('pp_customer_info');
+  if (!saved) return;
+  try {
+    const info = JSON.parse(saved);
+    if (document.getElementById('custName')) document.getElementById('custName').value = info.name || '';
+    if (document.getElementById('custPhone')) document.getElementById('custPhone').value = info.phone || '';
+    if (document.getElementById('custAddress')) document.getElementById('custAddress').value = info.address || '';
+    if (document.getElementById('custCity')) document.getElementById('custCity').value = info.city || '';
+    if (document.getElementById('custPincode')) document.getElementById('custPincode').value = info.pincode || '';
+  } catch (e) {
+    // ignore
+  }
+}
+
+function updatePayOption(radio) {
+  document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('active'));
+  if (radio && radio.parentElement) {
+    radio.parentElement.classList.add('active');
+  }
+}
+
+function submitOrder() {
+  if (cart.length === 0) {
+    showToast('Your bag is empty! Please add a fragrance first.');
+    return;
+  }
+
+  const nameInput = document.getElementById('custName');
+  const phoneInput = document.getElementById('custPhone');
+  const addressInput = document.getElementById('custAddress');
+  const cityInput = document.getElementById('custCity');
+  const pincodeInput = document.getElementById('custPincode');
+
+  const name = nameInput ? nameInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const address = addressInput ? addressInput.value.trim() : '';
+  const city = cityInput ? cityInput.value.trim() : '';
+  const pincode = pincodeInput ? pincodeInput.value.trim() : '';
+
+  // Form Validation for All 5 Fields
+  if (!name || name.length < 2) {
+    showToast('Please enter your full name');
+    if (nameInput) nameInput.focus();
+    return;
+  }
+
+  const phoneClean = phone.replace(/[^0-9]/g, '');
+  if (phoneClean.length !== 10) {
+    showToast('Please enter a valid 10-digit mobile number');
+    if (phoneInput) phoneInput.focus();
+    return;
+  }
+
+  if (!address || address.length < 5) {
+    showToast('Please enter your complete street address');
+    if (addressInput) addressInput.focus();
+    return;
+  }
+
+  if (!city || city.length < 2) {
+    showToast('Please enter your city/town');
+    if (cityInput) cityInput.focus();
+    return;
+  }
+
+  const pinClean = pincode.replace(/[^0-9]/g, '');
+  if (pinClean.length !== 6) {
+    showToast('Please enter a valid 6-digit Indian PIN code');
+    if (pincodeInput) pincodeInput.focus();
+    return;
+  }
+
+  const payMethodRadio = document.querySelector('input[name="payMethod"]:checked');
+  const payMethod = payMethodRadio ? payMethodRadio.value : 'Cash on Delivery (COD)';
+
+  // Save for future orders
+  localStorage.setItem('pp_customer_info', JSON.stringify({
+    name,
+    phone: phoneClean,
+    address,
+    city,
+    pincode: pinClean
+  }));
+
+  // Generate Order
+  const orderId = 'PP-' + Math.floor(100000 + Math.random() * 900000);
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+  // Build WhatsApp pre-filled message
+  const itemsText = cart.map(i => `• ${i.name} (${i.size}) x ${i.qty} = ₹${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n');
+  const waMessage = 
+`👑 *PERFUME PARADISE INDIA - NEW ORDER* 👑
+---------------------------------------
+*Order ID:* ${orderId}
+*Payment Mode:* ${payMethod}
+
+📦 *ORDERED FRAGRANCES:*
+${itemsText}
+
+💰 *TOTAL PAYABLE:* ₹${subtotal.toLocaleString('en-IN')}
+
+📍 *DELIVERY ADDRESS:*
+*Name:* ${name}
+*Phone:* ${phoneClean}
+*Address:* ${address}
+*City:* ${city}
+*Pincode:* ${pinClean}
+
+Please confirm and dispatch my order. Thank you!`;
+
+  const waUrl = `https://wa.me/919876543210?text=${encodeURIComponent(waMessage)}`;
+
+  // Populate Order Success Modal
+  document.getElementById('orderSuccessId').textContent = `ORDER #${orderId}`;
+  document.getElementById('orderSuccessTotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+  document.getElementById('orderSuccessPaymentMethod').textContent = payMethod;
+  document.getElementById('orderSuccessAddress').innerHTML = `
+    <strong>${name}</strong><br>
+    ${address}, ${city} - ${pinClean}<br>
+    📞 +91 ${phoneClean}
+  `;
+
+  document.getElementById('orderItemsSummaryList').innerHTML = cart.map(item => `
+    <div class="order-summary-row">
+      <span>${item.qty}x ${item.name} <small style="color:var(--gold-700);">(${item.size})</small></span>
+      <span>₹${(item.price * item.qty).toLocaleString('en-IN')}</span>
+    </div>
+  `).join('');
+
+  const waBtn = document.getElementById('orderWhatsAppBtn');
+  if (waBtn) waBtn.href = waUrl;
+
+  // Clear cart
+  cart = [];
+  saveCart();
+  updateHeaderBadges();
+  renderCartItems();
+
+  // Close cart drawer & open confirmation modal
+  document.getElementById('cartDrawer').classList.remove('active');
+  document.getElementById('orderSuccessModal').classList.add('active');
+  document.getElementById('modalBackdrop').classList.add('active');
+
+  showToast(`🎉 Order #${orderId} confirmed successfully!`);
+}
+
+function closeOrderModal() {
+  document.getElementById('orderSuccessModal').classList.remove('active');
+  document.getElementById('modalBackdrop').classList.remove('active');
+}
+
+/* ==========================================================================
    WISHLIST SYSTEM
    ========================================================================== */
 function toggleWishlist(productId) {
@@ -569,7 +819,7 @@ function toggleWishlist(productId) {
 }
 
 /* ==========================================================================
-   QUICK VIEW MODAL
+   QUICK VIEW MODAL (WITH 50ml ₹599 & 20ml ₹299 SIZES)
    ========================================================================== */
 function initQuickView() {
   const qvClose = document.getElementById('qvCloseBtn');
@@ -578,9 +828,40 @@ function initQuickView() {
   }
 }
 
+function setQuickViewSize(productId, size, price, origPrice) {
+  qvActiveSize = size;
+  const modal = document.getElementById('quickViewModal');
+  if (!modal) return;
+
+  const btn50 = modal.querySelector('.qv-size-50');
+  const btn20 = modal.querySelector('.qv-size-20');
+  const priceCurrent = modal.querySelector('.qv-price-current');
+  const priceOrig = modal.querySelector('.qv-price-orig');
+  const addBtn = modal.querySelector('.qv-add-btn');
+
+  if (size === '20ml') {
+    if (btn20) btn20.classList.add('active');
+    if (btn50) btn50.classList.remove('active');
+  } else {
+    if (btn50) btn50.classList.add('active');
+    if (btn20) btn20.classList.remove('active');
+  }
+
+  if (priceCurrent) priceCurrent.textContent = `₹${price}`;
+  if (priceOrig) priceOrig.textContent = `₹${origPrice}`;
+  if (addBtn) {
+    addBtn.innerHTML = `Add To Bag • ₹${price}`;
+    addBtn.setAttribute('onclick', `addToCart('${productId}', '${size}', ${price}); closeQuickView();`);
+  }
+}
+
 function openQuickView(productId) {
   const product = PRODUCTS_DATA.find(p => p.id === productId);
   if (!product) return;
+
+  qvActiveSize = selectedProductSizes[productId] || '50ml';
+  const currPrice = qvActiveSize === '20ml' ? product.price20ml : product.price50ml;
+  const currOrigPrice = qvActiveSize === '20ml' ? product.originalPrice20ml : product.originalPrice50ml;
 
   const modal = document.getElementById('quickViewModal');
   const backdrop = document.getElementById('modalBackdrop');
@@ -597,9 +878,9 @@ function openQuickView(productId) {
         <p style="font-size:0.85rem; color:var(--gold-600); font-weight:600; margin-bottom:14px;">${product.subtitle}</p>
 
         <div class="product-pricing-wrap" style="margin-bottom:18px;">
-          <span class="product-price-current" style="font-size:1.5rem;">₹${product.price.toLocaleString('en-IN')}</span>
-          <span class="product-price-original" style="font-size:1rem;">₹${product.originalPrice.toLocaleString('en-IN')}</span>
-          <span class="product-discount-tag" style="font-size:0.8rem;">SAVE ${Math.round((1 - product.price / product.originalPrice) * 100)}%</span>
+          <span class="product-price-current qv-price-current" style="font-size:1.5rem;">₹${currPrice}</span>
+          <span class="product-price-original qv-price-orig" style="font-size:1rem;">₹${currOrigPrice}</span>
+          <span class="product-discount-tag" style="font-size:0.8rem;">SAVE 40%</span>
         </div>
 
         <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6; margin-bottom:18px;">
@@ -615,16 +896,21 @@ function openQuickView(productId) {
 
         <div style="margin-bottom:20px;">
           <label style="font-family:var(--font-serif-royal); font-size:0.75rem; letter-spacing:0.1em; color:var(--emerald-950); text-transform:uppercase; display:block; margin-bottom:8px;">Select Flacon Size:</label>
-          <div style="display:flex; gap:10px;">
-            <button class="size-pill-btn active" style="padding:8px 16px; border:1px solid var(--gold-500); background:var(--emerald-900); color:var(--gold-400); border-radius:2px; font-size:0.76rem; font-weight:600;">50ml EDP</button>
-            <button class="size-pill-btn" style="padding:8px 16px; border:1px solid rgba(7,35,24,0.2); background:transparent; color:var(--emerald-950); border-radius:2px; font-size:0.76rem; font-weight:600;">100ml EDP (+₹699)</button>
-            <button class="size-pill-btn" style="padding:8px 16px; border:1px solid rgba(7,35,24,0.2); background:transparent; color:var(--emerald-950); border-radius:2px; font-size:0.76rem; font-weight:600;">12ml Attar Oil</button>
+          <div class="qv-size-group">
+            <button type="button" class="qv-size-btn qv-size-50 ${qvActiveSize === '50ml' ? 'active' : ''}" onclick="setQuickViewSize('${product.id}', '50ml', 599, 999)">
+              <span class="size-title">50ml Signature Flacon</span>
+              <span class="size-price-tag">₹599 (Save 40%)</span>
+            </button>
+            <button type="button" class="qv-size-btn qv-size-20 ${qvActiveSize === '20ml' ? 'active' : ''}" onclick="setQuickViewSize('${product.id}', '20ml', 299, 499)">
+              <span class="size-title">20ml Luxury Pocket Spray</span>
+              <span class="size-price-tag">₹299 (Save 40%)</span>
+            </button>
           </div>
         </div>
 
         <div style="display:flex; gap:12px; margin-top:auto;">
-          <button class="btn btn-primary" style="flex:1;" onclick="addToCart('${product.id}'); closeQuickView();">
-            Add To Bag • ₹${product.price.toLocaleString('en-IN')}
+          <button class="btn btn-primary qv-add-btn" style="flex:1;" onclick="addToCart('${product.id}', '${qvActiveSize}', ${currPrice}); closeQuickView();">
+            Add To Bag • ₹${currPrice}
           </button>
           <button class="btn btn-secondary" onclick="toggleWishlist('${product.id}')" style="color:var(--emerald-950); border-color:var(--border-gold);">
             ♥ Wishlist
@@ -642,14 +928,14 @@ function closeQuickView() {
   const modal = document.getElementById('quickViewModal');
   if (modal) modal.classList.remove('active');
   const backdrop = document.getElementById('modalBackdrop');
-  if (backdrop && !document.getElementById('cartDrawer').classList.contains('active') && !document.getElementById('searchModal').classList.contains('active')) {
+  if (backdrop && !document.getElementById('cartDrawer').classList.contains('active') && !document.getElementById('searchModal').classList.contains('active') && !document.getElementById('orderSuccessModal').classList.contains('active')) {
     backdrop.classList.remove('active');
   }
 }
 
 /* ==========================================================================
    LIVE SEARCH MODAL
-   ========================================================================== */
+   ========================================================================= */
 function initLiveSearch() {
   const searchBtn = document.getElementById('searchToggleBtn');
   const searchModal = document.getElementById('searchModal');
@@ -693,7 +979,7 @@ function initLiveSearch() {
             <div>
               <h5 style="font-family:var(--font-serif-royal); color:var(--ivory-50); font-size:0.9rem;">${p.name}</h5>
               <p style="font-size:0.75rem; color:var(--gold-400);">${p.subtitle}</p>
-              <p style="font-size:0.8rem; color:var(--ivory-100); font-weight:700;">₹${p.price.toLocaleString('en-IN')}</p>
+              <p style="font-size:0.8rem; color:var(--ivory-100); font-weight:700;">50ml: ₹599 • 20ml: ₹299</p>
             </div>
           </div>
         `).join('');

@@ -211,10 +211,16 @@
             <div class="hero-bottle-info">
               <h4 id="heroBottleTitle">MY SIGNATURE</h4>
               <p id="heroBottleNotes">Sandalwood • Cashmere • Vanilla Saffron</p>
+              <div style="font-size:0.7rem; color:var(--gold-400); margin-top:2px; font-weight:600;">50ml: ₹599 • 20ml: ₹299</div>
             </div>
-            <button class="btn btn-primary btn-sm" onclick="addToCart('my-signature')">
-              BUY NOW • ₹1,699
-            </button>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <button class="btn btn-primary btn-sm" onclick="addToCart('my-signature', '50ml', 599)">
+                BUY 50ml • ₹599
+              </button>
+              <button class="btn btn-secondary btn-sm" style="padding:4px 8px; font-size:0.68rem;" onclick="addToCart('my-signature', '20ml', 299)">
+                20ml • ₹299
+              </button>
+            </div>
           </div>
         </div>
 
@@ -902,21 +908,116 @@
       <!-- Items dynamically populated via JS -->
     </div>
 
+    <!-- Address Collection Section in Cart Drawer -->
+    <div class="cart-checkout-section" id="cartCheckoutSection" style="display:none;">
+      <div class="checkout-section-header">
+        <div class="checkout-section-badge">📍</div>
+        <div>
+          <h4 class="checkout-section-title">Delivery Address</h4>
+          <p class="checkout-section-subtitle">Pan-India Express Doorstep Dispatch</p>
+        </div>
+      </div>
+
+      <form id="shippingAddressForm" class="checkout-form-grid" onsubmit="event.preventDefault(); submitOrder();">
+        <div class="checkout-field-wrap">
+          <label class="checkout-label" for="custName">Full Name <span class="req">*</span></label>
+          <input type="text" id="custName" class="checkout-input" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div class="checkout-field-wrap">
+          <label class="checkout-label" for="custPhone">Phone Number <span class="req">*</span></label>
+          <input type="tel" id="custPhone" class="checkout-input" placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div class="checkout-field-wrap">
+          <label class="checkout-label" for="custAddress">Address (House/Flat, Street, Area) <span class="req">*</span></label>
+          <textarea id="custAddress" class="checkout-textarea" rows="2" placeholder="e.g. Flat 301, Royal Palms, MG Road" required></textarea>
+        </div>
+
+        <div class="checkout-row-2">
+          <div class="checkout-field-wrap">
+            <label class="checkout-label" for="custCity">City <span class="req">*</span></label>
+            <input type="text" id="custCity" class="checkout-input" placeholder="e.g. Mumbai" required>
+          </div>
+          <div class="checkout-field-wrap">
+            <label class="checkout-label" for="custPincode">Pincode <span class="req">*</span></label>
+            <input type="text" id="custPincode" class="checkout-input" placeholder="e.g. 400001" pattern="[0-9]{6}" maxlength="6" required>
+          </div>
+        </div>
+
+        <div class="payment-selector">
+          <label class="checkout-label">Payment Mode</label>
+          <div class="payment-options-grid">
+            <label class="payment-option-card active" id="payMethodCodCard">
+              <input type="radio" name="payMethod" value="Cash on Delivery (COD)" checked onchange="updatePayOption(this)">
+              <span>💵 Cash on Delivery</span>
+            </label>
+            <label class="payment-option-card" id="payMethodUpiCard">
+              <input type="radio" name="payMethod" value="UPI / Online Payment" onchange="updatePayOption(this)">
+              <span>⚡ UPI / Online</span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+
     <!-- Drawer Footer -->
     <div class="cart-footer">
       <div class="cart-subtotal-row">
         <span class="cart-subtotal-label">Subtotal</span>
         <span class="cart-subtotal-val" id="cartSubtotal">₹0</span>
       </div>
-      <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:14px; text-align:center;">
+      <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:12px; text-align:center;">
         Taxes included • Free luxury sample included with every bottle
       </p>
-      <button class="cart-checkout-btn" onclick="showToast('Proceeding to Secure Checkout with Razorpay / UPI / COD across India...');">
-        <span>Proceed To Checkout</span>
+      <button class="cart-checkout-btn" id="checkoutSubmitBtn" onclick="submitOrder()">
+        <span>PLACE ORDER NOW</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
       </button>
     </div>
   </aside>
+
+  <!-- Order Confirmation Modal -->
+  <div class="order-success-modal" id="orderSuccessModal" role="dialog" aria-modal="true">
+    <div class="order-success-crest">👑</div>
+    <h3 class="order-success-title">Order Confirmed!</h3>
+    <div class="order-id-badge" id="orderSuccessId">ORDER #PP-2026-001</div>
+    <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:16px;">
+      Thank you for choosing Perfume Paradise India. Your royal fragrance parcel is being prepared for dispatch.
+    </p>
+
+    <div class="order-summary-box">
+      <div style="font-family:var(--font-serif-royal); font-size:0.78rem; letter-spacing:0.1em; color:var(--gold-600); margin-bottom:8px; text-transform:uppercase;">Order Breakdown</div>
+      <div id="orderItemsSummaryList"></div>
+      <div class="order-summary-row">
+        <span>Delivery:</span>
+        <span style="color:#27AE60; font-weight:600;">FREE Pan-India Express</span>
+      </div>
+      <div class="order-summary-row">
+        <span>Payment Method:</span>
+        <span id="orderSuccessPaymentMethod" style="font-weight:600;">Cash on Delivery (COD)</span>
+      </div>
+      <div class="order-summary-row">
+        <span>Total Payable:</span>
+        <span id="orderSuccessTotal" style="color:var(--emerald-950); font-size:1.15rem; font-weight:700;">₹0</span>
+      </div>
+
+      <div class="order-address-preview">
+        <strong style="color:var(--emerald-950); display:block; margin-bottom:3px;">📦 Delivery Address:</strong>
+        <span id="orderSuccessAddress"></span>
+      </div>
+    </div>
+
+    <div class="order-actions-group">
+      <a href="#" id="orderWhatsAppBtn" target="_blank" class="btn-whatsapp-order">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.576 1.761.88 2.791.88 3.182 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.766-5.767-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.823 0-3.53-.49-5.004-1.343l-6.996 1.83 1.862-6.804c-.928-1.514-1.462-3.294-1.462-5.183 0-5.514 4.486-10 10-10 5.514 0 10 4.486 10 10z"/></svg>
+        Confirm Order via WhatsApp
+      </a>
+      <button class="btn btn-emerald btn-sm" onclick="closeOrderModal()">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
 
   <!-- Quick View Modal -->
   <div class="quick-view-modal" id="quickViewModal" role="dialog" aria-modal="true">
