@@ -840,7 +840,7 @@ ${itemsText}
 
 Please confirm and dispatch my order. Thank you!`;
 
-  const waUrl = `https://wa.me/919876543210?text=${encodeURIComponent(waMessage)}`;
+  const waUrl = `https://wa.me/918848740778?text=${encodeURIComponent(waMessage)}`;
 
   // Populate Order Success Modal
   document.getElementById('orderSuccessId').textContent = `ORDER #${orderId}`;

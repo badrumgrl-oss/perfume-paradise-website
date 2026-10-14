@@ -1759,6 +1759,37 @@ button {
   text-transform: uppercase;
 }
 
+.instagram-cta-wrap {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.btn-instagram-follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%);
+  color: #FFFFFF !important;
+  border-radius: 30px;
+  font-family: var(--font-serif-royal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.35);
+  text-decoration: none;
+}
+
+.btn-instagram-follow:hover,
+.btn-instagram-follow:active {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(225, 48, 108, 0.5);
+  color: #FFFFFF !important;
+}
+
 /* ==========================================================================
    NEWSLETTER SECTION
    ========================================================================== */
@@ -1963,6 +1994,30 @@ button {
   color: var(--gold-400);
   flex-shrink: 0;
   margin-top: 3px;
+}
+
+.footer-gmb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 5px 12px;
+  background: rgba(200, 162, 93, 0.12);
+  border: 1px solid var(--border-gold);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold-300);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.footer-gmb-link:hover,
+.footer-gmb-link:active {
+  background: var(--gold-gradient);
+  color: var(--emerald-950) !important;
+  border-color: transparent;
+  transform: translateY(-1px);
 }
 
 .footer-bottom {
