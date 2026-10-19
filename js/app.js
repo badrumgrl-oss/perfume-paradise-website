@@ -245,8 +245,72 @@ const PRODUCTS_DATA = [
     heartNotes: 'Royal Arabian Jasmine, White Orchid, Magnolia',
     baseNotes: 'Regal White Musk, Cashmeran, Sandalwood Cream',
     description: 'Named after Arabian royalty ("Princess"). An intoxicating tribute to nocturnal jasmine crowned with velvety white musk and golden saffron.'
+  },
+  {
+    id: 'bilal-royal',
+    name: 'BILAL ROYAL ATTAR',
+    subtitle: 'Pure Concentrated Attar • Dehn Al Oud & Taif Rose Otto',
+    category: 'attar',
+    categoryName: 'Artisanal Pure Attar',
+    price50ml: 599,
+    price20ml: 299,
+    originalPrice50ml: 999,
+    originalPrice20ml: 499,
+    image: 'assets/images/bilal-royal.jpg',
+    badge: 'Artisanal Crown',
+    badgeType: 'gold',
+    longevity: '24+ Hours Longevity',
+    concentration: '100% Non-Alcoholic Concentrated Oil',
+    topNotes: 'Cambodian Oud Wood, Cardamom, Saffron Threads',
+    heartNotes: 'Taif Damask Rose Otto, Smoked Luban, Golden Honey',
+    baseNotes: 'Aged Dehn Al Oud, Royal Ambergris, Silken Musk',
+    description: 'The crowning masterpiece of traditional Arabian attar maceration. 100% alcohol-free concentrated perfume oil with unmatched spiritual depth and 24+ hour skin presence.'
   }
 ];
+
+// Rich Category Metadata for Dedicated Routing & Headings
+const CATEGORY_META = {
+  all: {
+    label: 'Most Coveted Scents',
+    title: 'BEST SELLING FRAGRANCES',
+    subtitle: 'Celebrated for their signature 20+ hour silage and rich Arabian-inspired notes. Handcrafted with obsession.',
+    breadcrumb: 'All Fragrances',
+    badge: 'All Collections',
+    pageTitle: 'Perfume Paradise India | Arabian Perfumes & Attars Online'
+  },
+  mens: {
+    label: "👑 Men's Royal Fragrance Vault",
+    title: "MEN'S LUXURY ARABIAN PERFUMES",
+    subtitle: "Commanding, magnetic, and deeply aristocratic. Formulated with aged Cambodian agarwood, smoky birch, atlas cedar, and warm black amber. 20+ hour sillage in 50ml (₹599) & 20ml (₹299).",
+    breadcrumb: "Men's Perfumes",
+    badge: "Men's Collection",
+    pageTitle: "Men's Arabian Perfumes & Colognes | Perfume Paradise India"
+  },
+  womens: {
+    label: "🌸 Women's Enchanting Fragrance Collection",
+    title: "WOMEN'S LUXURY ARABIAN PERFUMES",
+    subtitle: "Graceful, seductive, and exquisitely feminine. Infused with dewy Taif damask rose, royal Arabian jasmine, bourbon vanilla, and wild crimson berries. 20+ hour longevity in 50ml (₹599) & 20ml (₹299).",
+    breadcrumb: "Women's Perfumes",
+    badge: "Women's Collection",
+    pageTitle: "Women's Arabian Perfumes & Attars | Perfume Paradise India"
+  },
+  unisex: {
+    label: "✨ Sovereign Gender-Neutral Scents",
+    title: "UNISEX SIGNATURE BLENDS",
+    subtitle: "Harmonious masterworks crafted to transcend convention. Creamy Mysore sandalwood, golden cashmere wood, midnight plum, and roasted tonka bean for sensory connoisseurs.",
+    breadcrumb: "Unisex Fragrances",
+    badge: "Unisex Collection",
+    pageTitle: "Unisex Arabian Perfumes & Blends | Perfume Paradise India"
+  },
+  attar: {
+    label: "🪔 100% Non-Alcoholic Artisanal Attars",
+    title: "ARTISANAL ATTARS & PERFUME OILS",
+    subtitle: "100% alcohol-free concentrated perfume oils (Ittar). Hand-macerated with pure frankincense, amber resin, and distilled botanicals for spiritual tranquility and 24+ hour longevity.",
+    breadcrumb: "Attar & Perfume Oils",
+    badge: "Pure Attar & Oils",
+    pageTitle: "Pure Non-Alcoholic Attar & Perfume Oils | Perfume Paradise India"
+  }
+};
 
 // App State
 let cart = JSON.parse(localStorage.getItem('pp_cart')) || [];
@@ -258,7 +322,7 @@ let qvActiveSize = '50ml'; // Active size in Quick View modal
 // DOM Ready initialization
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
-  renderProducts();
+  initCategoryRouting();
   initHeroSwitcher();
   initCart();
   initQuickView();
@@ -458,6 +522,318 @@ function selectProductSize(productId, size) {
   }
 }
 
+/* ==========================================================================
+   CATEGORY ROUTING, PAGE NAVIGATION & FILTERING
+   ========================================================================== */
+function navigateToCategory(category, shouldPushState = true, shouldScroll = true) {
+  const validCategories = ['all', 'mens', 'womens', 'unisex', 'attar'];
+  const cat = validCategories.includes(category) ? category : 'all';
+  currentCategory = cat;
+
+  const meta = CATEGORY_META[cat] || CATEGORY_META.all;
+  document.title = meta.pageTitle;
+
+  // Update Section Headers
+  const labelEl = document.getElementById('catalogSectionLabel');
+  const titleEl = document.getElementById('catalogSectionTitle');
+  const descEl = document.getElementById('catalogSectionDesc');
+  const bannerEl = document.getElementById('categoryActiveBanner');
+
+  if (labelEl) labelEl.textContent = meta.label;
+  if (titleEl) titleEl.textContent = meta.title;
+  if (descEl) descEl.textContent = meta.subtitle;
+
+  // Filter products count
+  const filtered = cat === 'all'
+    ? PRODUCTS_DATA
+    : PRODUCTS_DATA.filter(p => p.category === cat);
+
+  // Update Category Meta Banner
+  if (bannerEl) {
+    if (cat === 'all') {
+      bannerEl.style.display = 'none';
+      bannerEl.innerHTML = '';
+    } else {
+      bannerEl.style.display = 'flex';
+      bannerEl.innerHTML = `
+        <div class="category-banner-inner">
+          <div class="category-breadcrumb-wrap">
+            <a href="?category=all" data-nav-category="all">All Fragrances</a>
+            <span class="category-crumb-sep">/</span>
+            <span class="category-crumb-current">${meta.breadcrumb}</span>
+          </div>
+          <div class="category-banner-meta">
+            <span class="category-count-badge">Showing ${filtered.length} Fragrances • 50ml (₹599) & 20ml (₹299)</span>
+            <button type="button" class="category-reset-btn" id="categoryResetBtn" title="Reset to all products">
+              <span>✕ Show All Fragrances</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      const resetBtn = bannerEl.querySelector('#categoryResetBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => navigateToCategory('all', true, true));
+      }
+      const allBreadcrumbLink = bannerEl.querySelector('a[data-nav-category="all"]');
+      if (allBreadcrumbLink) {
+        allBreadcrumbLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          navigateToCategory('all', true, true);
+        });
+      }
+    }
+  }
+
+  // Highlight Desktop Navigation Links
+  document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+    const linkCat = link.getAttribute('data-nav-category');
+    if (linkCat) {
+      if (linkCat === cat) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Highlight Mobile Drawer Navigation Links
+  document.querySelectorAll('.mobile-nav-links .mobile-nav-item').forEach(link => {
+    const linkCat = link.getAttribute('data-nav-category');
+    if (linkCat) {
+      if (linkCat === cat) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Highlight Filter Navigation Buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const btnFilter = btn.getAttribute('data-filter');
+    if (btnFilter === cat) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Render filtered products
+  renderProducts();
+
+  // Clean URL Routes Handling with history.pushState
+  if (shouldPushState) {
+    const currentUrl = new URL(window.location.href);
+    if (cat === 'all') {
+      currentUrl.searchParams.delete('category');
+      currentUrl.searchParams.delete('cat');
+      const targetUrl = currentUrl.pathname + (currentUrl.search ? currentUrl.search : '');
+      window.history.pushState({ category: 'all' }, meta.pageTitle, targetUrl);
+    } else {
+      currentUrl.searchParams.set('category', cat);
+      window.history.pushState({ category: cat }, meta.pageTitle, currentUrl.pathname + '?' + currentUrl.searchParams.toString());
+    }
+  }
+
+  // Smooth scroll to catalog section
+  if (shouldScroll) {
+    const catalogSection = document.getElementById('bestsellers');
+    if (catalogSection) {
+      const headerOffset = 90;
+      const elementPosition = catalogSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+}
+
+function initCategoryRouting() {
+  // Check URL Query Parameters: ?category=mens or ?cat=mens
+  const params = new URLSearchParams(window.location.search);
+  let initialCategory = params.get('category') || params.get('cat');
+
+  // Check URL Hash: #mens, #womens, #unisex, #attar, #bestsellers
+  if (!initialCategory && window.location.hash) {
+    const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+    if (['mens', 'womens', 'unisex', 'attar'].includes(hash)) {
+      initialCategory = hash;
+    }
+  }
+
+  // Check Pathname: /mens, /womens, /unisex, /attar
+  if (!initialCategory && window.location.pathname) {
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    const lastSegment = segments[segments.length - 1];
+    if (lastSegment && ['mens', 'womens', 'unisex', 'attar'].includes(lastSegment.toLowerCase())) {
+      initialCategory = lastSegment.toLowerCase();
+    }
+  }
+
+  // Bind click on desktop navigation category links
+  document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+    const cat = link.getAttribute('data-nav-category');
+    if (cat) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigateToCategory(cat, true, true);
+      });
+    } else {
+      // Regular section links like Home, Gift Sets, Collections, About, Contact
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.main-nav .nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        if (link.getAttribute('data-nav') === 'home') {
+          // If home, clear category state cleanly
+          const url = new URL(window.location.href);
+          url.searchParams.delete('category');
+          url.searchParams.delete('cat');
+          window.history.pushState({ category: 'all' }, CATEGORY_META.all.pageTitle, url.pathname);
+          currentCategory = 'all';
+          const meta = CATEGORY_META.all;
+          document.title = meta.pageTitle;
+          const labelEl = document.getElementById('catalogSectionLabel');
+          const titleEl = document.getElementById('catalogSectionTitle');
+          const descEl = document.getElementById('catalogSectionDesc');
+          const bannerEl = document.getElementById('categoryActiveBanner');
+          if (labelEl) labelEl.textContent = meta.label;
+          if (titleEl) titleEl.textContent = meta.title;
+          if (descEl) descEl.textContent = meta.subtitle;
+          if (bannerEl) bannerEl.style.display = 'none';
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            if (b.getAttribute('data-filter') === 'all') b.classList.add('active');
+            else b.classList.remove('active');
+          });
+          renderProducts();
+        }
+      });
+    }
+  });
+
+  // Bind click on mobile navigation drawer category links
+  document.querySelectorAll('.mobile-nav-links .mobile-nav-item').forEach(link => {
+    const cat = link.getAttribute('data-nav-category');
+    if (cat) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMobileNav();
+        navigateToCategory(cat, true, true);
+      });
+    }
+  });
+
+  // Bind click on category collection cards in #categories
+  document.querySelectorAll('.category-card[data-category]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cat = card.getAttribute('data-category');
+      navigateToCategory(cat, true, true);
+    });
+  });
+
+  // Bind click on footer category links
+  document.querySelectorAll('a[data-footer-category]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cat = link.getAttribute('data-footer-category');
+      navigateToCategory(cat, true, true);
+    });
+  });
+
+  // Bind click on filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-filter');
+      navigateToCategory(cat, true, false);
+    });
+  });
+
+  // Listen for browser Back/Forward navigation
+  window.addEventListener('popstate', (e) => {
+    const p = new URLSearchParams(window.location.search);
+    const cat = (e.state && e.state.category) || p.get('category') || p.get('cat') || 'all';
+    navigateToCategory(cat, false, false);
+  });
+
+  // Listen for hashchange
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+    if (['mens', 'womens', 'unisex', 'attar'].includes(hash)) {
+      navigateToCategory(hash, true, true);
+    }
+  });
+
+  // Setup active section scroll spy
+  initScrollSpy();
+
+  // Initial category navigation
+  if (initialCategory && ['mens', 'womens', 'unisex', 'attar'].includes(initialCategory)) {
+    navigateToCategory(initialCategory, false, true);
+  } else {
+    navigateToCategory('all', false, false);
+    const homeLink = document.querySelector('.main-nav .nav-link[data-nav="home"]');
+    if (homeLink && window.scrollY < 300) {
+      document.querySelectorAll('.main-nav .nav-link').forEach(l => l.classList.remove('active'));
+      homeLink.classList.add('active');
+    }
+  }
+}
+
+function initScrollSpy() {
+  const sections = [
+    { id: 'hero', nav: 'home' },
+    { id: 'gifting', nav: 'gifting' },
+    { id: 'categories', nav: 'categories' },
+    { id: 'about', nav: 'about' },
+    { id: 'footer', nav: 'footer' }
+  ];
+
+  window.addEventListener('scroll', () => {
+    // Only update active link if user hasn't selected a category filter
+    if (currentCategory !== 'all') return;
+
+    const scrollY = window.scrollY;
+    if (scrollY < 300) {
+      document.querySelectorAll('.main-nav .nav-link').forEach(l => l.classList.remove('active'));
+      const homeLink = document.querySelector('.main-nav .nav-link[data-nav="home"]');
+      if (homeLink) homeLink.classList.add('active');
+      return;
+    }
+
+    const catalogSection = document.getElementById('bestsellers');
+    if (catalogSection) {
+      const top = catalogSection.offsetTop - 120;
+      const height = catalogSection.offsetHeight;
+      if (scrollY >= top && scrollY < top + height) {
+        document.querySelectorAll('.main-nav .nav-link').forEach(l => l.classList.remove('active'));
+        const shopLink = document.querySelector('.main-nav .nav-link[data-nav-category="all"]');
+        if (shopLink) shopLink.classList.add('active');
+        return;
+      }
+    }
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const sec = document.getElementById(sections[i].id);
+      if (sec) {
+        const top = sec.offsetTop - 150;
+        if (scrollY >= top) {
+          document.querySelectorAll('.main-nav .nav-link').forEach(l => l.classList.remove('active'));
+          const activeNav = document.querySelector(`.main-nav .nav-link[data-nav="${sections[i].nav}"]`);
+          if (activeNav) activeNav.classList.add('active');
+          break;
+        }
+      }
+    }
+  }, { passive: true });
+}
+
 function renderProducts() {
   const container = document.getElementById('productsContainer');
   if (!container) return;
@@ -465,6 +841,21 @@ function renderProducts() {
   const filtered = currentCategory === 'all'
     ? PRODUCTS_DATA
     : PRODUCTS_DATA.filter(p => p.category === currentCategory);
+
+  // Trigger smooth fade-in animation
+  container.classList.remove('animating');
+  void container.offsetWidth; // Force reflow
+  container.classList.add('animating');
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+        <p style="font-size: 1.1rem; margin-bottom: 12px;">No fragrances found in this category.</p>
+        <button type="button" class="btn btn-primary btn-sm" onclick="navigateToCategory('all', true, true)">View All Fragrances</button>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = filtered.map(product => {
     const isWishlisted = wishlist.includes(product.id);
@@ -533,17 +924,6 @@ function renderProducts() {
       </div>
     `;
   }).join('');
-
-  // Setup filter buttons
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCategory = btn.getAttribute('data-filter');
-      renderProducts();
-    });
-  });
 }
 
 function addCurrentCardToCart(productId) {

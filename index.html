@@ -296,16 +296,16 @@
 
       <!-- Desktop Navigation Links -->
       <nav class="main-nav" aria-label="Main Navigation">
-        <a href="#hero" class="nav-link active">Home</a>
-        <a href="#bestsellers" class="nav-link">Shop</a>
-        <a href="#bestsellers" class="nav-link" onclick="currentCategory='mens'; renderProducts();">Men's</a>
-        <a href="#bestsellers" class="nav-link" onclick="currentCategory='womens'; renderProducts();">Women's</a>
-        <a href="#bestsellers" class="nav-link" onclick="currentCategory='unisex'; renderProducts();">Unisex</a>
-        <a href="#bestsellers" class="nav-link" onclick="currentCategory='attar'; renderProducts();">Attar & Perfume Oils</a>
-        <a href="#gifting" class="nav-link">Gift Sets</a>
-        <a href="#categories" class="nav-link">Collections</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#footer" class="nav-link">Contact</a>
+        <a href="#hero" class="nav-link active" data-nav="home">Home</a>
+        <a href="?category=all" class="nav-link" data-nav-category="all">Shop</a>
+        <a href="?category=mens" class="nav-link" data-nav-category="mens">Men's</a>
+        <a href="?category=womens" class="nav-link" data-nav-category="womens">Women's</a>
+        <a href="?category=unisex" class="nav-link" data-nav-category="unisex">Unisex</a>
+        <a href="?category=attar" class="nav-link" data-nav-category="attar">Attar & Perfume Oils</a>
+        <a href="#gifting" class="nav-link" data-nav="gifting">Gift Sets</a>
+        <a href="#categories" class="nav-link" data-nav="categories">Collections</a>
+        <a href="#about" class="nav-link" data-nav="about">About</a>
+        <a href="#footer" class="nav-link" data-nav="footer">Contact</a>
       </nav>
 
       <!-- Utility Icons -->
@@ -503,10 +503,10 @@
       <div class="categories-grid">
         
         <!-- 1. Men's Perfumes -->
-        <a href="#bestsellers" class="category-card" onclick="currentCategory='mens'; renderProducts();">
+        <a href="?category=mens" class="category-card" data-category="mens">
           <img class="category-img" src="assets/images/khalifa.jpg" alt="Men's Perfumes Collection">
           <div class="category-overlay">
-            <span class="category-count">12 Fragrances</span>
+            <span class="category-count">Commanding Sillage</span>
             <h3 class="category-name">Men's Perfumes</h3>
             <p class="category-desc">Rich Cambodian oud, smoky birch, atlas cedar and magnetic leather.</p>
             <span class="category-action">Explore Collection →</span>
@@ -514,10 +514,10 @@
         </a>
 
         <!-- 2. Women's Perfumes -->
-        <a href="#bestsellers" class="category-card" onclick="currentCategory='womens'; renderProducts();">
+        <a href="?category=womens" class="category-card" data-category="womens">
           <img class="category-img" src="assets/images/romancia.jpg" alt="Women's Perfumes Collection">
           <div class="category-overlay">
-            <span class="category-count">10 Fragrances</span>
+            <span class="category-count">Velvet Romance</span>
             <h3 class="category-name">Women's Perfumes</h3>
             <p class="category-desc">Velvety Taif rose, sweet amber, wild crimson berries and bourbon vanilla.</p>
             <span class="category-action">Explore Collection →</span>
@@ -525,10 +525,10 @@
         </a>
 
         <!-- 3. Unisex Fragrances -->
-        <a href="#bestsellers" class="category-card" onclick="currentCategory='unisex'; renderProducts();">
+        <a href="?category=unisex" class="category-card" data-category="unisex">
           <img class="category-img" src="assets/images/night-mood.jpg" alt="Unisex Fragrances Collection">
           <div class="category-overlay">
-            <span class="category-count">14 Fragrances</span>
+            <span class="category-count">Sovereign Harmonies</span>
             <h3 class="category-name">Unisex Fragrances</h3>
             <p class="category-desc">Harmonious symphonies of sandalwood, cashmere, plum and golden spices.</p>
             <span class="category-action">Explore Collection →</span>
@@ -536,7 +536,7 @@
         </a>
 
         <!-- 4. Attar & Perfume Oils -->
-        <a href="#bestsellers" class="category-card" onclick="currentCategory='attar'; renderProducts();">
+        <a href="?category=attar" class="category-card" data-category="attar">
           <img class="category-img" src="assets/images/bilal.jpg" alt="Attar & Perfume Oils Collection">
           <div class="category-overlay">
             <span class="category-count">100% Non-Alcoholic</span>
@@ -579,21 +579,24 @@
     <div class="container">
       
       <div class="section-header">
-        <div class="section-label">Most Coveted Scents</div>
-        <h2 class="section-title">BEST SELLING FRAGRANCES</h2>
-        <p class="section-subtitle">
+        <div class="section-label" id="catalogSectionLabel">Most Coveted Scents</div>
+        <h2 class="section-title" id="catalogSectionTitle">BEST SELLING FRAGRANCES</h2>
+        <p class="section-subtitle" id="catalogSectionDesc">
           Celebrated for their signature 20+ hour silage and rich Arabian-inspired notes. Handcrafted with obsession.
         </p>
       </div>
 
       <!-- Category Filter Pills -->
       <div class="filter-nav">
-        <button class="filter-btn active" data-filter="all">All Bestsellers</button>
-        <button class="filter-btn" data-filter="mens">Men's Perfumes</button>
-        <button class="filter-btn" data-filter="womens">Women's Perfumes</button>
-        <button class="filter-btn" data-filter="unisex">Unisex Fragrances</button>
-        <button class="filter-btn" data-filter="attar">Attar & Oils</button>
+        <button type="button" class="filter-btn active" data-filter="all">All Bestsellers</button>
+        <button type="button" class="filter-btn" data-filter="mens">Men's Perfumes</button>
+        <button type="button" class="filter-btn" data-filter="womens">Women's Perfumes</button>
+        <button type="button" class="filter-btn" data-filter="unisex">Unisex Fragrances</button>
+        <button type="button" class="filter-btn" data-filter="attar">Attar & Oils</button>
       </div>
+
+      <!-- Active Category Breadcrumb & Info Banner -->
+      <div class="category-meta-banner" id="categoryActiveBanner" style="display:none;"></div>
 
       <!-- Dynamic Product Grid -->
       <div class="products-grid" id="productsContainer">
@@ -1063,10 +1066,10 @@
         <div>
           <h4 class="footer-column-title">Shop</h4>
           <ul class="footer-links-list">
-            <li><a href="#bestsellers" onclick="currentCategory='mens'; renderProducts();">Men's Perfumes</a></li>
-            <li><a href="#bestsellers" onclick="currentCategory='womens'; renderProducts();">Women's Perfumes</a></li>
-            <li><a href="#bestsellers" onclick="currentCategory='unisex'; renderProducts();">Unisex Fragrances</a></li>
-            <li><a href="#bestsellers" onclick="currentCategory='attar'; renderProducts();">Attar & Perfume Oils</a></li>
+            <li><a href="?category=mens" data-footer-category="mens">Men's Perfumes</a></li>
+            <li><a href="?category=womens" data-footer-category="womens">Women's Perfumes</a></li>
+            <li><a href="?category=unisex" data-footer-category="unisex">Unisex Fragrances</a></li>
+            <li><a href="?category=attar" data-footer-category="attar">Attar & Perfume Oils</a></li>
             <li><a href="#discovery">Discovery Sets</a></li>
             <li><a href="#gifting">Luxury Gift Sets</a></li>
           </ul>
@@ -1198,27 +1201,27 @@
 
     <!-- Mobile Navigation Links -->
     <nav class="mobile-nav-links" aria-label="Mobile Menu Links">
-      <a href="#hero" class="mobile-nav-item active">
+      <a href="#hero" class="mobile-nav-item active" data-nav="home">
         <span class="mobile-nav-bullet">✦</span>
         <span>Home</span>
       </a>
-      <a href="#bestsellers" class="mobile-nav-item" onclick="currentCategory='all'; renderProducts();">
+      <a href="?category=all" class="mobile-nav-item" data-nav-category="all">
         <span class="mobile-nav-bullet">✦</span>
         <span>Shop All Fragrances</span>
       </a>
-      <a href="#bestsellers" class="mobile-nav-item" onclick="currentCategory='mens'; renderProducts();">
+      <a href="?category=mens" class="mobile-nav-item" data-nav-category="mens">
         <span class="mobile-nav-bullet">✦</span>
         <span>Men's Perfumes</span>
       </a>
-      <a href="#bestsellers" class="mobile-nav-item" onclick="currentCategory='womens'; renderProducts();">
+      <a href="?category=womens" class="mobile-nav-item" data-nav-category="womens">
         <span class="mobile-nav-bullet">✦</span>
         <span>Women's Perfumes</span>
       </a>
-      <a href="#bestsellers" class="mobile-nav-item" onclick="currentCategory='unisex'; renderProducts();">
+      <a href="?category=unisex" class="mobile-nav-item" data-nav-category="unisex">
         <span class="mobile-nav-bullet">✦</span>
         <span>Unisex Fragrances</span>
       </a>
-      <a href="#bestsellers" class="mobile-nav-item" onclick="currentCategory='attar'; renderProducts();">
+      <a href="?category=attar" class="mobile-nav-item" data-nav-category="attar">
         <span class="mobile-nav-bullet">✦</span>
         <span>Attar & Perfume Oils</span>
       </a>
